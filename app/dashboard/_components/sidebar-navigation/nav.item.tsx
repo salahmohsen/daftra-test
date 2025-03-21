@@ -35,40 +35,43 @@ export default function NavItem({ item, level = 0 }: NavItemProps) {
   const setOpenItems = useNavStore(state => state.setOpenItems);
   const isEditable = useNavStore(state => state.isEditable);
 
+  const handleItemClick = () => {
+    setOpenItems({ [item.id]: !openItems[item.id] });
+  };
+
   return (
-    <div
-      ref={setNodeRef}
-      {...attributes}
-      style={style}
-      className={cn(level === 0 && 'px-5')}
-    >
+    <div ref={setNodeRef} style={style} className={cn(level === 0 && 'px-5')}>
       <ListItemButton
         disableRipple={true}
-        onClick={() => setOpenItems({ [item.id]: !openItems[item.id] })}
-        className="text-gray-700"
+        onClick={handleItemClick}
+        className={'text-gray-700'}
         classes={{
           root: cn(
-            'flex justify-start bg-gray-100! w-full! rounded-md!',
+            'flex justify-start bg-gray-100! w-full! rounded-md! ',
             level >= 1 && 'pl-10!',
           ),
         }}
       >
-        <div {...listeners} className="cursor-grab">
-          {isEditable && (
-            <ListItemIcon
-              classes={{
-                root: cn('min-w-max! mr-2'),
-              }}
-            >
-              <Grip className="h-4 w-4" />
-            </ListItemIcon>
-          )}
-        </div>
+        {isEditable && (
+          <ListItemIcon
+            classes={{
+              root: cn(
+                'min-w-max! mr-2',
+                isEditable && '**:cursor-grab! **:active:cursor-grabbing!',
+              ),
+            }}
+            {...attributes}
+            {...listeners}
+          >
+            <Grip className="h-4 w-4" />
+          </ListItemIcon>
+        )}
+
         <ListItemText primary={item.title} />
         {hasChildren && (isOpen ? <ExpandLess /> : <ExpandMore />)}
       </ListItemButton>
       {hasChildren && (
-        <Collapse in={isOpen} timeout="auto" unmountOnExit>
+        <Collapse in={isEditable ? true : isOpen} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
             {item.children?.map(child => (
               <NavItem key={child.id} item={child} level={level + 1} />
