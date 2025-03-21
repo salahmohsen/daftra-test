@@ -1,26 +1,37 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --green-primary: #48a74c;
+  --green-light: #f3fdf3;
+  --green-medium: #14a077;
+  --green-dark: #3d8e41;
+  --gray-100: #f7f7f7;
+  --gray-200: #f0f0f0;
+  --gray-250: #e9e9e9;
+  --gray-300: #e6e6e6;
+  --gray-400: #c4c3c3;
+  --gray-500: #707070;
+  --gray-700: #404040;
+  --gray-900: #161616;
 }
 
-@theme inline {
+@theme {
+  --font-sans: var(--font-dm-sans);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  --color-green-primary: var(--green-primary);
+  --color-green-dark: var(--green-dark);
+  --color-green-medium: var(--green-medium);
+  --color-green-light: var(--green-light);
+  --color-green-bg: var(--green-bg);
+  --color-gray-100: var(--gray-100);
+  --color-gray-200: var(--gray-200);
+  --color-gray-250: var(--gray-250);
+  --color-gray-300: var(--gray-300);
+  --color-gray-400: var(--gray-400);
+  --color-gray-500: var(--gray-500);
+  --color-gray-700: var(--gray-700);
+  --color-gray-900: var(--gray-900);
 }
