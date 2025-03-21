@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const navAxios = axios.create({
-  baseURL: `${process.env.NEXT_PUBLIC_API_URL}/nav`,
+  baseURL: `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8081'}/nav`,
   headers: { 'Content-Type': 'application/json' },
 });
 
@@ -14,7 +14,7 @@ navAxios.interceptors.response.use(
 );
 
 export const navTrackAxios = axios.create({
-  baseURL: `${process.env.NEXT_PUBLIC_API_URL}/track`,
+  baseURL: `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8081'}/track`,
   headers: { 'Content-Type': 'application/json' },
 });
 

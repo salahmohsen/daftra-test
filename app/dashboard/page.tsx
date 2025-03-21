@@ -10,7 +10,8 @@ import Sort from './_components/sort';
 export default async function Dashboard({
   searchParams,
 }: {
-  searchParams: { page?: string; sort?: string };
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  searchParams: any;
 }) {
   const { page = '1', sort = DEFAULT_SORT || SortEnum.LATEST } =
     await searchParams;
