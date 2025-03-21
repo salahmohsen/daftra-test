@@ -1,7 +1,7 @@
 'use client';
 
 import { getNavApi } from '@/lib/api/nav.api';
-import { useDnd } from '@/lib/hooks/useDnd';
+import { useDndContext } from '@/lib/hooks/useDndContext';
 import { useNavStore } from '@/lib/providers/nav.store.provider';
 import { NavItemType } from '@/lib/types/nav.types';
 import { cn } from '@/lib/utils';
@@ -20,7 +20,6 @@ export default function Navigation({ className }: { className?: string }) {
     queryFn: getNavApi,
     enabled: pathname?.includes('dashboard'),
   });
-  const items = useNavStore(state => state.Items);
   const setItems = useNavStore(state => state.setItems);
   const setOpenItems = useNavStore(state => state.setOpenItems);
 
@@ -36,16 +35,12 @@ export default function Navigation({ className }: { className?: string }) {
     }
   }, [data, setItems, setOpenItems]);
 
-  const { DndContext } = useDnd({
-    items,
-    setItems,
-    key: 'main-items',
-  });
+  const { DndContext } = useDndContext();
 
   return (
     <div className={cn('bg-background flex flex-col gap-5', className)}>
       <DndContext>
-        <Column items={items} />
+        <Column />
       </DndContext>
     </div>
   );

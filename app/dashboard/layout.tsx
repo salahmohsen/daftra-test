@@ -1,6 +1,6 @@
 import { DM_Sans } from 'next/font/google';
 import Header from './_components/header';
-import Navigation from './_components/sidebar-navigation/nav.main';
+import Navigation from './_components/sidebar-navigation/nav.provider';
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
